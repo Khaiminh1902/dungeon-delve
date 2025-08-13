@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <!-- Background circle -->
+  <circle cx="48" cy="48" r="46" fill="#365314" stroke="#84cc16" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Mohawk hair -->
+  <path d="M40 8 Q44 6 48 8 Q52 6 56 8 L54 22 Q52 24 48 22 Q44 24 42 22 Z" fill="#1f2937"/>
+  <path d="M41 10 Q44 8 48 10 Q52 8 55 10 L53 20 Q52 22 48 20 Q44 22 43 20 Z" fill="#374151"/>
+  
+  <!-- Face (green, brutish) -->
+  <ellipse cx="48" cy="42" rx="20" ry="18" fill="#84cc16"/>
+  <ellipse cx="48" cy="42" rx="18" ry="16" fill="#a3e635"/>
+  
+  <!-- Prominent brow -->
+  <path d="M30 32 L66 32 L64 38 L32 38 Z" fill="#65a30d"/>
+  <path d="M32 33 L64 33 L63 36 L33 36 Z" fill="#84cc16"/>
+  
+  <!-- Eyes (red, menacing) -->
+  <ellipse cx="42" cy="38" rx="4" ry="3" fill="#dc2626"/>
+  <ellipse cx="54" cy="38" rx="4" ry="3" fill="#dc2626"/>
+  <ellipse cx="42" cy="38" rx="2" ry="2" fill="#ef4444"/>
+  <ellipse cx="54" cy="38" rx="2" ry="2" fill="#ef4444"/>
+  <circle cx="42" cy="37" r="0.8" fill="#1f2937"/>
+  <circle cx="54" cy="37" r="0.8" fill="#1f2937"/>
+  
+  <!-- Large nose -->
+  <path d="M45 44 L51 44 L48 50 Z" fill="#65a30d"/>
+  <circle cx="46" cy="47" r="1" fill="#1f2937" opacity="0.6"/>
+  <circle cx="50" cy="47" r="1" fill="#1f2937" opacity="0.6"/>
+  
+  <!-- Tusks (prominent) -->
+  <path d="M42 50 L44 48 L46 54 L44 56 Z" fill="#fef3c7"/>
+  <path d="M50 54 L52 48 L54 50 L52 56 Z" fill="#fef3c7"/>
+  <path d="M43 49 L45 48 L45 53 L43 54 Z" fill="#ffffff"/>
+  <path d="M51 53 L53 48 L53 54 L51 53 Z" fill="#ffffff"/>
+  
+  <!-- Mouth/grimace -->
+  <path d="M45 52 Q48 55 51 52" stroke="#1f2937" stroke-width="2" fill="none"/>
+  
+  <!-- War paint/scars -->
+  <path d="M35 35 L40 40" stroke="#dc2626" stroke-width="2" opacity="0.7"/>
+  <path d="M56 40 L61 35" stroke="#dc2626" stroke-width="2" opacity="0.7"/>
+  <circle cx="52" cy="45" r="1" fill="#7c2d12" opacity="0.8"/>
+  
+  <!-- Spiked shoulder armor -->
+  <path d="M20 55 L35 55 L38 70 L22 70 Z" fill="#1f2937"/>
+  <path d="M58 55 L76 55 L74 70 L60 70 Z" fill="#1f2937"/>
+  <path d="M22 56 L33 56 L36 68 L24 68 Z" fill="#374151"/>
+  <path d="M60 56 L74 56 L72 68 L62 68 Z" fill="#374151"/>
+  
+  <!-- Shoulder spikes -->
+  <path d="M18 50 L22 45 L26 50 Z" fill="#4b5563"/>
+  <path d="M70 50 L74 45 L78 50 Z" fill="#4b5563"/>
+  <path d="M19 50 L22 46 L25 50 Z" fill="#6b7280"/>
+  <path d="M71 50 L74 46 L77 50 Z" fill="#6b7280"/>
+  
+  <!-- Leather chest armor -->
+  <path d="M35 60 L61 60 L59 85 L37 85 Z" fill="#92400e"/>
+  <path d="M37 62 L59 62 L57 83 L39 83 Z" fill="#b45309"/>
+  
+  <!-- Armor studs/spikes -->
+  <circle cx="42" cy="66" r="2" fill="#4b5563"/>
+  <circle cx="48" cy="70" r="2" fill="#4b5563"/>
+  <circle cx="54" cy="66" r="2" fill="#4b5563"/>
+  <circle cx="45" cy="75" r="2" fill="#4b5563"/>
+  <circle cx="51" cy="75" r="2" fill="#4b5563"/>
+  
+  <!-- Weapon handle visible -->
+  <rect x="10" y="60" width="5" height="20" fill="#7c2d12"/>
+  <rect x="11" y="61" width="3" height="18" fill="#92400e"/>
+</svg>
+
