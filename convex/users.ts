@@ -55,24 +55,69 @@ export const signupAction = action({
   },
 });
 
+// New login action that never throws errors
 export const loginAction = action({
   args: { username: v.string(), password: v.string() },
   handler: async (
     ctx,
     args
-  ): Promise<{ userId: Id<"users">; token: string }> => {
-    const user = await ctx.runQuery(internal.users.getUserByUsername, {
-      username: args.username.trim(),
-    });
-    if (!user) throw new Error("Invalid username or password");
+  ): Promise<{ success: boolean; userId?: Id<"users">; token?: string; error?: string }> => {
+    // Validate input - never throw, always return error response
+    const username = args.username?.trim() || "";
+    if (username.length === 0) {
+      return { success: false, error: "Username is required" };
+    }
+    if (!args.password || args.password.length === 0) {
+      return { success: false, error: "Password is required" };
+    }
 
-    const ok = await bcrypt.compare(args.password, (user as any).passwordHash);
-    if (!ok) throw new Error("Invalid username or password");
+    try {
+      // Find user - wrap in try-catch to prevent any database errors from throwing
+      const user = await ctx.runQuery(internal.users.getUserByUsername, {
+        username,
+      });
+      
+      // User not found - return error, don't throw
+      if (!user) {
+        return { success: false, error: "Invalid username or password" };
+      }
 
-    const { token } = await ctx.runMutation(internal.users.createSession, {
-      userId: (user as any)._id,
-    });
-    return { userId: (user as any)._id, token };
+      // Verify password - wrap bcrypt call to prevent any errors
+      let isPasswordValid = false;
+      try {
+        isPasswordValid = await bcrypt.compare(args.password, (user as any).passwordHash);
+      } catch (bcryptError) {
+        console.error("Bcrypt comparison error:", bcryptError);
+        return { success: false, error: "An error occurred during login. Please try again." };
+      }
+
+      // Password invalid - return error, don't throw
+      if (!isPasswordValid) {
+        return { success: false, error: "Invalid username or password" };
+      }
+
+      // Create session - wrap in try-catch to prevent session creation errors
+      let sessionData;
+      try {
+        sessionData = await ctx.runMutation(internal.users.createSession, {
+          userId: (user as any)._id,
+        });
+      } catch (sessionError) {
+        console.error("Session creation error:", sessionError);
+        return { success: false, error: "Failed to create session. Please try again." };
+      }
+      
+      // Success - return the data
+      return { 
+        success: true, 
+        userId: (user as any)._id, 
+        token: sessionData.token 
+      };
+    } catch (unexpectedError) {
+      // Catch any other unexpected errors
+      console.error("Unexpected login error:", unexpectedError);
+      return { success: false, error: "An unexpected error occurred. Please try again." };
+    }
   },
 });
 

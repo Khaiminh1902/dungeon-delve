@@ -66,10 +66,32 @@ export default function AuthPage() {
           character: form.character,
         })) as { userId: string; token: string };
       } else {
-        res = (await login({
+        const loginResult = await login({
           username: form.username,
           password: form.password,
-        })) as { userId: string; token: string };
+        });
+        
+        console.log("Login result:", loginResult); // Debug log
+        
+        // Check if we have a proper response object
+        if (!loginResult || typeof loginResult !== 'object') {
+          setError("Invalid response from server");
+          return;
+        }
+        
+        // Check for success property
+        if ('success' in loginResult && !loginResult.success) {
+          setError(loginResult.error || "Login failed");
+          return;
+        }
+        
+        // Check if we have the required fields for success
+        if (!loginResult.userId || !loginResult.token) {
+          setError("Login failed - missing session data");
+          return;
+        }
+        
+        res = { userId: loginResult.userId, token: loginResult.token };
       }
       localStorage.setItem(
         "dd_session",

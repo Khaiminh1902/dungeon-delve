@@ -12,10 +12,11 @@ import {
   Zap,
   Flame,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function PlayPage() {
-  const [authed, setAuthed] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [, setAuthed] = useState(false);
+  const [, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -76,18 +77,19 @@ export default function PlayPage() {
         </p>
 
         <button className="group relative bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 hover:from-emerald-500 hover:via-green-500 hover:to-emerald-500 px-12 py-6 rounded-2xl font-bold text-2xl text-white shadow-lg shadow-green-900/50 transform transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-green-800/70 cursor-pointer">
-          <span className="relative z-10 flex items-center justify-center gap-4">
-            <Scale className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
-            <span>ENTER THE DUNGEON</span>
-            <Shield className="w-8 h-8 group-hover:-rotate-12 transition-transform duration-300" />
-          </span>
+          <Link href="/play/floor1">
+            <span className="relative z-10 flex items-center justify-center gap-4">
+              <Scale className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
+              <span>ENTER THE DUNGEON</span>
+              <Shield className="w-8 h-8 group-hover:-rotate-12 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/40 to-green-400/40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/40 to-green-400/40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
-
-          <div
-            className="absolute inset-0 border-2 border-emerald-400/50 rounded-2xl animate-pulse"
-            style={{ animationDuration: "3s" }}
-          ></div>
+            <div
+              className="absolute inset-0 border-2 border-emerald-400/50 rounded-2xl animate-pulse"
+              style={{ animationDuration: "3s" }}
+            ></div>
+          </Link>
         </button>
 
         <div className="mt-8 grid grid-cols-3 gap-4 text-center">
