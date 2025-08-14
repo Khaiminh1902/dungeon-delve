@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -10,12 +12,12 @@ interface GodotGameProps {
   onGameData?: (data: any) => void;
 }
 
-export default function GodotGame({ 
-  gamePath, 
-  width = 800, 
+export default function GodotGame({
+  gamePath,
+  width = 800,
   height = 600,
   onReady,
-  onGameData 
+  onGameData,
 }: GodotGameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,14 +30,14 @@ export default function GodotGame({
     const loadGodotGame = async () => {
       try {
         // Load Godot engine
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = `${gamePath}/dungeon-floor1.js`;
         script.onload = async () => {
           // Initialize Godot engine
           const Engine = (window as any).Engine;
-          
+
           if (!Engine) {
-            throw new Error('Godot Engine failed to load');
+            throw new Error("Godot Engine failed to load");
           }
 
           engine = new Engine({
@@ -46,7 +48,7 @@ export default function GodotGame({
 
           // Start the engine
           await engine.startGame();
-          
+
           engineRef.current = engine;
           setIsLoading(false);
           onReady?.();
@@ -56,7 +58,7 @@ export default function GodotGame({
         };
 
         script.onerror = () => {
-          setError('Failed to load Godot game files');
+          setError("Failed to load Godot game files");
           setIsLoading(false);
         };
 
@@ -69,7 +71,7 @@ export default function GodotGame({
           document.head.removeChild(script);
         };
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        setError(err instanceof Error ? err.message : "Unknown error");
         setIsLoading(false);
       }
     };
@@ -77,27 +79,28 @@ export default function GodotGame({
     loadGodotGame();
   }, [gamePath, onReady]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setupGodotCommunication = (engine: any) => {
     // Listen for messages from Godot
     (window as any).godotMessageHandler = (message: string) => {
       try {
         const data = JSON.parse(message);
         onGameData?.(data);
-        
+
         // Handle specific game events
         switch (data.type) {
-          case 'player_position':
-            console.log('Player moved to:', data.position);
+          case "player_position":
+            console.log("Player moved to:", data.position);
             break;
-          case 'player_health':
-            console.log('Player health:', data.health);
+          case "player_health":
+            console.log("Player health:", data.health);
             break;
-          case 'level_complete':
-            console.log('Level completed!');
+          case "level_complete":
+            console.log("Level completed!");
             break;
         }
       } catch (err) {
-        console.error('Failed to parse Godot message:', err);
+        console.error("Failed to parse Godot message:", err);
       }
     };
   };
@@ -106,7 +109,7 @@ export default function GodotGame({
     if (engineRef.current) {
       const messageStr = JSON.stringify(message);
       // Call Godot function (you'll need to expose this in your Godot script)
-      (window as any).godot_js_call?.('receive_message', messageStr);
+      (window as any).godot_js_call?.("receive_message", messageStr);
     }
   };
 
@@ -136,15 +139,15 @@ export default function GodotGame({
           </div>
         </div>
       )}
-      
+
       <canvas
         ref={canvasRef}
         width={width}
         height={height}
         className="block border border-amber-600/30 rounded-lg"
-        style={{ 
+        style={{
           imageRendering: "pixelated",
-          background: "#1a1a1a"
+          background: "#1a1a1a",
         }}
       />
     </div>
