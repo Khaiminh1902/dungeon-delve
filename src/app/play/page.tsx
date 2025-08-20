@@ -2,16 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Castle,
-  Shield,
-  Scale,
-  Trophy,
-  Heart,
-  Coins,
-  Zap,
-  Flame,
-} from "lucide-react";
+import { Castle, Shield, Scale, Zap, Flame } from "lucide-react";
 import Link from "next/link";
 
 export default function PlayPage() {
@@ -77,7 +68,7 @@ export default function PlayPage() {
         </p>
 
         <button className="group relative bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 hover:from-emerald-500 hover:via-green-500 hover:to-emerald-500 px-12 py-6 rounded-2xl font-bold text-2xl text-white shadow-lg shadow-green-900/50 transform transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-green-800/70 cursor-pointer">
-          <Link href="/play/floor1">
+          <Link href="/play/game">
             <span className="relative z-10 flex items-center justify-center gap-4">
               <Scale className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
               <span>ENTER THE DUNGEON</span>
@@ -91,24 +82,6 @@ export default function PlayPage() {
             ></div>
           </Link>
         </button>
-
-        <div className="mt-8 grid grid-cols-3 gap-4 text-center">
-          <div className="bg-black/20 rounded-xl p-3 border border-amber-600/20">
-            <Trophy className="w-6 h-6 text-amber-400 mx-auto mb-1" />
-            <div className="text-xs text-amber-400">LEVEL</div>
-            <div className="text-amber-200 font-bold">1</div>
-          </div>
-          <div className="bg-black/20 rounded-xl p-3 border border-amber-600/20">
-            <Heart className="w-6 h-6 text-amber-400 mx-auto mb-1" />
-            <div className="text-xs text-amber-400">HEALTH</div>
-            <div className="text-amber-200 font-bold">100</div>
-          </div>
-          <div className="bg-black/20 rounded-xl p-3 border border-amber-600/20">
-            <Coins className="w-6 h-6 text-amber-400 mx-auto mb-1" />
-            <div className="text-xs text-amber-400">GOLD</div>
-            <div className="text-amber-200 font-bold">0</div>
-          </div>
-        </div>
       </div>
 
       <div className="mt-8 text-center">

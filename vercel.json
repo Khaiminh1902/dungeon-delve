@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/unity/Build/(.*).wasm",
+      "headers": [{ "key": "Content-Type", "value": "application/wasm" }]
+    },
+    {
+      "source": "/unity/Build/(.*).data",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" }
+      ]
+    },
+    {
+      "source": "/unity/Build/(.*).framework.js",
+      "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+    },
+    {
+      "source": "/unity/Build/(.*).loader.js",
+      "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+    }
+  ]
+}
