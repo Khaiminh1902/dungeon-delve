@@ -1,18 +1,25 @@
 {
   "headers": [
     {
-      "source": "/unity/Build/(.*).wasm",
-      "headers": [{ "key": "Content-Type", "value": "application/wasm" }]
-    },
-    {
-      "source": "/unity/Build/(.*).data",
+      "source": "/unity/Build/(.*).wasm.unityweb",
       "headers": [
-        { "key": "Content-Type", "value": "application/octet-stream" }
+        { "key": "Content-Type", "value": "application/wasm" },
+        { "key": "Content-Encoding", "value": "gzip" }
       ]
     },
     {
-      "source": "/unity/Build/(.*).framework.js",
-      "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+      "source": "/unity/Build/(.*).data.unityweb",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" },
+        { "key": "Content-Encoding", "value": "gzip" }
+      ]
+    },
+    {
+      "source": "/unity/Build/(.*).framework.js.unityweb",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript" },
+        { "key": "Content-Encoding", "value": "gzip" }
+      ]
     },
     {
       "source": "/unity/Build/(.*).loader.js",
